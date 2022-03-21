@@ -1,7 +1,14 @@
 import React, { useReducer } from "react";
 import reducer, { initialState } from "../reducers/index";
 
-import { applyNumber, changeOperation, clearDisplay } from "../actions/index";
+import {
+  applyNumber,
+  changeOperation,
+  clearDisplay,
+  addMemory,
+  recallMemory,
+  clearMemory,
+} from "../actions/index";
 
 import "./App.css";
 
@@ -27,6 +34,18 @@ function App() {
     dispatch(clearDisplay());
   };
 
+  const addMemoryHandler = () => {
+    dispatch(addMemory());
+  };
+
+  const recallMemoryHandler = () => {
+    dispatch(recallMemory());
+  };
+
+  const clearMemoryHandler = () => {
+    dispatch(clearMemory());
+  };
+
   return (
     <div className="App">
       <nav className="navbar navbar-dark bg-dark">
@@ -49,9 +68,9 @@ function App() {
             </div>
 
             <div className="row">
-              <CalcButton value={"M+"} />
-              <CalcButton value={"MR"} />
-              <CalcButton value={"MC"} />
+              <CalcButton value={"M+"} onClick={addMemoryHandler} />
+              <CalcButton value={"MR"} onClick={recallMemoryHandler} />
+              <CalcButton value={"MC"} onClick={clearMemoryHandler} />
             </div>
 
             <div className="row">
